@@ -1,0 +1,12 @@
+*.iso
+*.qcow2
+*.img
+*.vmdk
+*.vdi
+*.7z
+*.log
+*.pid
+monitor.sock
+.vscode/
+.idea/
+.DS_Store
