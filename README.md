@@ -6,7 +6,6 @@ ChromeOS / Crostini (Debian container) on modest hardware.
 Currently included:
 
 - `run-kali.sh` — launch Kali Linux in QEMU (installer, persistent, or live)
-- `qemu_setup.sh` — older setup helper, kept for reference
 
 ## Prerequisites
 
@@ -130,3 +129,24 @@ DISPLAY_MODE=sdl ./run-kali.sh
 
 - `Ctrl+Alt+F` — toggle full-screen
 - `Ctrl+Alt+G` — release the mouse back to ChromeOS
+
+## SSH access
+
+`run-kali.sh` forwards host port **2222** to the guest's port **22**, so you can
+work inside Kali from a ChromeOS terminal where copy/paste works.
+
+Inside the guest, first time only:
+
+```bash
+sudo apt install -y openssh-server
+sudo systemctl enable --now ssh
+```
+
+From the ChromeOS terminal:
+
+```bash
+ssh -p 2222 YOUR_KALI_USERNAME@localhost
+```
+
+Replace `YOUR_KALI_USERNAME` with the account you created during install.- `qemu_setup.sh` — older setup helper, kept for reference
+
