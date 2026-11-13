@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2054  # QEMU arg values legitimately use commas
 set -euo pipefail
 
 KALI_ISO="${KALI_ISO:-$HOME/isos/kali-linux-2026.3-installer-amd64.iso}"
@@ -49,5 +50,5 @@ echo "Starting Kali (MODE=$MODE, RAM=${RAM_MB}M, VCPUs=$VCPUS, DISPLAY=$DISPLAY_
 exec qemu-system-x86_64 \
   "${ACCEL[@]}" -m "$RAM_MB" -smp "$VCPUS" \
   "${DISK_ARGS[@]}" "${BOOT_ARGS[@]}" "${DISP[@]}" \
-  -netdev user,id=net0 -device virtio-net-pci,netdev=net0 \
+  -netdev user,id=net0,hostfwd=tcp::2222-:22 -device virtio-net-pci,netdev=net0 \
   -rtc base=localtime -name "Kali Linux"
