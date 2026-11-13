@@ -95,7 +95,7 @@ That is tight. Practical guidance:
 **The VM window disappeared — is it running?**
 
 ```bash
-pgrep -a qemu-system-x86_64
+pgrep -af qemu-system-x86_64
 ```
 
 - Output with a PID → still running, just hidden. Use Alt+Tab or the
